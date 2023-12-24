@@ -10,10 +10,18 @@ import { AuthService } from '../auth.service';
 })
 export class LoginComponent {
 
+  private username = ''
+  private password = ''
+
   constructor(private authService: AuthService) {
   }
 
   newAccount() {
     this.authService.createAccount()
+  }
+
+  login() {
+    console.log(this.username)
+    console.log(this.password)
   }
 }
