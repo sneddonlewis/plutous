@@ -25,5 +25,18 @@ export class LoginComponent {
   login() {
     console.log(this.username)
     console.log(this.password)
+    this.authService.login(this.username, this.password)
+      .subscribe(
+        response => {
+          console.log('Login successful:', response);
+          const bearerToken = response.headers.get('Authorization');
+          if (bearerToken) {
+            console.log('Bearer Token:', bearerToken);
+          }
+        },
+        error => {
+          console.error('Login error:', error);
+        }
+      )
   }
 }
