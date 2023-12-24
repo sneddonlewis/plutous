@@ -65,13 +65,11 @@ async fn login(
     State(account_repo): State<DynAccountRepo>,
     Json(request): Json<AccountAuthView>,
 ) -> impl IntoResponse {
-    println!("login request");
     let acc = account_repo
         .find(request.card_number.clone())
         .await
         .unwrap();
 
-    println!("{}", acc.card_number);
     if acc.pin == request.pin {
         let token = encode_token(request.card_number.clone());
         let mut headers = HeaderMap::new();
