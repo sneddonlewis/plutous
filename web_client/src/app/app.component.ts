@@ -1,8 +1,10 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms'
 import { RouterOutlet } from '@angular/router';
-import { LoginComponent } from './auth/login/login.component';
 import { HttpClientModule } from '@angular/common/http';
+
+import { LoginComponent } from './auth/login/login.component'
 
 @Component({
   selector: 'app-root',
@@ -10,8 +12,9 @@ import { HttpClientModule } from '@angular/common/http';
   imports: [
     CommonModule,
     RouterOutlet,
-    LoginComponent,
     HttpClientModule,
+    LoginComponent,
+    FormsModule,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
