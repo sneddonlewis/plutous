@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Observable } from 'rxjs'
+import { Account, AccountDetail } from '../types';
 
 @Injectable({
   providedIn: 'root'
@@ -9,9 +10,9 @@ export class AuthService {
 
   constructor(private client: HttpClient) { }
 
-  createAccount() {
+  createAccount(): Observable<Account> {
     const url = "/new";
-    this.client.get(url).subscribe(r => console.log(r))
+    return this.client.get<Account>(url)
   }
 
   login(card_number: string, pin: string): Observable<HttpResponse<unknown>> {
@@ -21,5 +22,10 @@ export class AuthService {
       pin
     }
     return this.client.post(url, body, { observe: 'response' })
+  }
+
+  accountDetail(): Observable<AccountDetail> {
+    const url = "/account";
+    return this.client.get<AccountDetail>(url)
   }
 }
